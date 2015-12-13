@@ -12,4 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require lib/underscore
+//= require lib/backbone
+//= require lib/backbone.marionette
+//= require_tree ./app/config
+//= require app/Application
+//= require_tree ./app
+
+$(function () {
+  ChecklistApp.start();
+});
