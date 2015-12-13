@@ -1,3 +1,173 @@
-// Place all the styles related to the application controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import './_normalize';
+@import './_variables';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+#header {
+  background-color: $primary-color;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+
+  h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+}
+
+#task-form {
+  margin: 60px auto;
+  padding: 0 20px;
+
+  @media (min-width: 550px) {
+    width: $app-width;
+    padding: 0;
+  }
+
+  .description {
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #AAA;
+    background: none;
+    transition: all .2s ease-out;
+
+    &:focus {
+      border-bottom-color: $primary-color;
+      outline: none;
+    }
+  }
+
+  .submit {
+    position: absolute;
+    left: -99999px;
+  }
+}
+
+#task-list {
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @media (min-width: 550px) {
+    width: $app-width;
+    padding: 0;
+  }
+
+  .empty {
+    text-align: center;
+    color: rgba(0,0,0,.4);
+    font-size: 22px;
+    display: none;
+
+    &.show {
+      display: block;
+    }
+  }
+
+  .tasks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    border-radius: 2px;
+
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+
+    .task {
+      transition: background 0.2s ease-out;
+      position: relative;
+
+      &:hover {
+        background-color: rgba(0,0,0,.04);
+
+        .options {
+          opacity: 1;
+        }
+      }
+
+      &.done {
+        background-color: rgba(0,0,0,.06);
+
+        span.description {
+          color: #999;
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+
+      + li {
+        border-top: 1px solid rgba(0,0,0,.1);
+      }
+
+      label {
+        display: block;
+        padding: 15px 20px;
+        margin-right: 40px;
+        cursor: pointer;
+      }
+
+      input[type=checkbox] {
+        margin-right: 10px;
+      }
+
+      span.description {
+        display: inline-block;
+        position: relative;
+        transition: all .2s ease-out;
+
+        &::after {
+          transition: all .3s ease-out;
+          content: '';
+          display: block;
+          position: absolute;
+          width: 0%;
+          left: 0;
+          top: 50%;
+          border-top: 1px solid rgba(0,0,0,.4);
+        }
+      }
+
+      .options {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        transition: opacity .3s ease-out;
+
+        .remove {
+          display: block;
+          width: 40px;
+          height: 100%;
+          padding-top: 15px;
+          font-size: 20px;
+          color: rgba(0,0,0,.4);
+          text-align: center;
+          text-decoration: none;
+
+          &:hover {
+            color: rgba(0,0,0,.7);
+          }
+        }
+      }
+    }
+  }
+}

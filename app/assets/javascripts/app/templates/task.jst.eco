@@ -1,0 +1,15 @@
+<label>
+  <input
+    type="checkbox"
+    name="done"
+    <%= 'checked' if @done %>
+  />
+
+  <span class="description">
+    <%= @description %>
+  </span>
+</label>
+
+<div class="options">
+  <a href="#" class="remove" title="Remove task">&times;</a>
+</div>

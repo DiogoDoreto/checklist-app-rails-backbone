@@ -1,0 +1,5 @@
+<div class="empty <%= 'show' if @isEmpty() %>">
+  Don't hesitate, create your first task!
+</div>
+
+<ul class="tasks"></ul>

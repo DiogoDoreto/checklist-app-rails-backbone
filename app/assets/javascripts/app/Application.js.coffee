@@ -1,14 +1,24 @@
 @ChecklistApp = do (Backbone, Marionette) ->
 
-  App = new Marionette.Application
+  class ChecklistApp extends Marionette.Application
+    onBeforeStart: ->
+      @rootView = new @ChecklistLayout
 
-  App.on 'before:start', ->
-    App.rootView = new ChecklistApp.ChecklistLayout
+    onStart: ->
+      @initViews()
 
-  App.on 'start', ->
-    App.rootView.getRegion('main').show new ChecklistApp.MainView
+      if Backbone.history
+        Backbone.history.start()
 
-    if Backbone.history
-      Backbone.history.start()
+    initViews: ->
+      headerView = new @HeaderView
+      @rootView.getRegion('header').show headerView
 
-  App
+      formView = new @TaskFormView
+      @rootView.getRegion('taskForm').show formView
+
+      tasks = new @TasksCollection
+      tasksView = new @TasksView collection: tasks
+      @rootView.getRegion('taskList').show tasksView
+
+  new ChecklistApp
