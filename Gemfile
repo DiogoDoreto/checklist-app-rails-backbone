@@ -24,3 +24,5 @@ gem 'jquery-rails'
 gem "active_model_serializers", "~> 0.8.0"
 
 gem "autoprefixer-rails"
+
+gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
