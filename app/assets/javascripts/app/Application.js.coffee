@@ -18,6 +18,7 @@
       @rootView.getRegion('taskForm').show formView
 
       tasks = new @TasksCollection
+      tasks.fetch()
       tasksView = new @TasksView collection: tasks
       @rootView.getRegion('taskList').show tasksView
 

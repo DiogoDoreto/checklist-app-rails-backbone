@@ -20,6 +20,7 @@ do (ChecklistApp, Marionette) ->
     onToggleDone: ->
       checked = @ui.checkbox.prop('checked')
       @model.set done: checked
+      @model.save()
 
     onChangeDone: ->
       isDone = @model.get 'done'

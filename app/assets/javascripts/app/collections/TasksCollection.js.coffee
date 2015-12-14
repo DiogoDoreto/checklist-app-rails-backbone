@@ -6,4 +6,7 @@ do (ChecklistApp, Backbone) ->
     initialize: ->
       @model = ChecklistApp.TaskModel
 
-      @listenTo ChecklistApp, 'add:task', @add
+      @listenTo ChecklistApp, 'add:task', @addAndSave
+
+    addAndSave: (task) =>
+      @add(task).save()
