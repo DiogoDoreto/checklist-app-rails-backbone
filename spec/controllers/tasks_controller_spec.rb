@@ -22,6 +22,14 @@ RSpec.describe TasksController, :type => :controller do
       get :index, {}, valid_session
       expect(assigns(:tasks)).to eq([task])
     end
+
+    it "assigns all tasks as @tasks in the creation order" do
+      task1 = Task.create! valid_attributes
+      task2 = Task.create! valid_attributes
+      task3 = Task.create! valid_attributes
+      get :index, {}, valid_session
+      expect(assigns(:tasks)).to eq([task1, task2, task3])
+    end
   end
 
   describe "GET #show" do
